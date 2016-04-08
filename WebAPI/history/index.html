@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>history object</title>
+</head>
+<body>
+<p>
+<a href="/p1">p1</a> <a href="/p2">p2</a> <a href="/p3">p3</a>
+</p>
+<div id="state">Welcome!</div>
+<script>
+var ht = window.history;
+
+//ht.pushState({tag: '/'}, '', '/');
+//ht.pushState({tag: 2}, '', '/p2');
+//ht.pushState({tag: 3}, '', '/p3');
+
+var aTags = document.querySelectorAll('a');
+
+for (var i = 0; i < aTags.length; i++) {
+	aTags[i].addEventListener('click', function(e) {
+		e.preventDefault();
+		var path = this.getAttribute('href');
+		ht.pushState({tag: path}, '', path);
+	});
+}
+
+window.addEventListener('popstate', function(e) {
+	var st = e.state;
+	var div = document.querySelector('#state');
+
+	console.log(st);
+
+	div.innerHTML = JSON.stringify(st);
+});
+</script>
+</body>
+</html>
