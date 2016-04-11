@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    width: 400px;
+    margin: 20px auto;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-align: center;
+}
+.searchBox {
+    margin: 10px 0 20px 0;
+}
+input[type="text"] {
+    box-sizing: border-box;
+    border: 1px solid #40a070;
+    height: 20px;
+    padding-left: 4px;
+}
+button {
+    background: #40a070;
+    border: none;
+    height: 20px;
+    padding: 0 10px;
+    margin-left: -1px;
+    color: #fff;
+}
+.card {
+    float: left;
+    width: 80px;
+    text-align: center;
+    height: 120px;
+}
+.card_text {
+    word-break: break-all;
+}

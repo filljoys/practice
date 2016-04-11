@@ -1,24 +1,11 @@
-//require('./main.css');
-import './main.css';
-import generateText from './sub';
-import $ from 'jquery';
-import moment from 'moment';
-import './plugin';
+/**
+ * Created by hzgongke on 2016/4/11 0011.
+ */
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './app';
+import './app.css';
 
-//var sub = require("./sub");
-//var $ = require('jquery');
-//var moment = require('moment');
-
-let app = document.createElement("div");
-
-const myPromise = Promise.resolve(42);
-
-myPromise.then((number) => {
-    $('body').append('<p>promise result is ' + number + ' now is ' + moment().format() + '</p>');
-    $('p').greenify();
-});
-
-app.innerHTML = "<h1>Hello World, This is Webpack</h1>";
-//app.appendChild(sub());
+const app = document.createElement('div');
 document.body.appendChild(app);
-app.appendChild(generateText());
+ReactDOM.render(<App /> , app);
