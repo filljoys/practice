@@ -3,6 +3,7 @@ import './main.css';
 import generateText from './sub';
 import $ from 'jquery';
 import moment from 'moment';
+import './plugin';
 
 //var sub = require("./sub");
 //var $ = require('jquery');
@@ -13,7 +14,8 @@ let app = document.createElement("div");
 const myPromise = Promise.resolve(42);
 
 myPromise.then((number) => {
-    $('body').append('<p>promise result is ' + number + ' now is ' + moment().format() + '</p>')
+    $('body').append('<p>promise result is ' + number + ' now is ' + moment().format() + '</p>');
+    $('p').greenify();
 });
 
 app.innerHTML = "<h1>Hello World, This is Webpack</h1>";

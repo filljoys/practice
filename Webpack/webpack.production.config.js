@@ -15,7 +15,7 @@ module.exports = {
     },
     output: {
         path: BUILD_PATH,
-        filename: "[name].js"
+        filename: "[name]_[hash].js"
     },
     module: {
         loaders: [
@@ -60,18 +60,5 @@ module.exports = {
         }),
         new webpack.optimize.UglifyJsPlugin({minimize: true}),
         new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js')
-    ],
-    devtool: 'eval-source-map',
-    devServer: {
-        historyApiFallback: true,
-        hot: true,
-        inline: true,
-        progress: true,
-        proxy: {
-            '/api/*': {
-                target: 'http://localhost:8080',
-                secure: false
-            }
-        }
-    }
+    ]
 };
