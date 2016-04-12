@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 对比ES5和ES6关于类的写法
+    // ES5
+    function Point(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    Point.prototype.distance = function() {
+        return Math.sqrt(this.x * this.x + this.y * this.y);
+    };
+
+    function ChildPoint(x, y, z) {
+        Point.call(this, x, y);
+        this.z = z;
+    }
+
+    ChildPoint.prototype = new Point();
+    ChildPoint.prototype.distance = function() {
+        return Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
+    }
+
+
+    // ES6
+    class Point2 {
+        constructor(x, y) {
+            this.x = x;
+            this.y = y;
+        }
+        distance() {
+            return Math.sqrt(this.x * this.x + this.y * this.y);
+        }
+    }
+
+    class ChildPoint2 extends Point2 {
+        constructor(x, y, z) {
+            super(x, y);
+            this.z = z;
+        }
+        distance() {
+            return Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
+        }
+    }
+
+    var point = new Point(3, 4);
+    console.log(point.distance());
+
+    var childPoint = new ChildPoint(3, 4, 5);
+    console.log(childPoint.distance());
+
+    var point2 = new Point2(3, 4);
+    console.log(point2.distance());
+
+    var childPoint2 = new ChildPoint2(3, 4, 5);
+    console.log(childPoint2.distance());
+</script>
+</body>
+</html>
