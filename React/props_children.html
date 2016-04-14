@@ -1,0 +1,91 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>if-else_React-Tips </title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="content"></div>
+<script type="text/babel">
+    window.isLogin = true;
+    var lists = [
+        {
+            id: '12a',
+            author: 'a',
+            msg: 'aaaaa'
+        },
+        {
+            id: '221b',
+            author: 'b',
+            msg: 'bbbbb'
+        },
+        {
+            id: 2,
+            author: 'c',
+            msg: 'ccccc'
+        }
+    ];
+    // 表达式中不能出现if-else
+    // var ListBox = React.createClass({
+    //   render: function() {
+    //        var len = this.props.lists.length;
+    //        return (
+    //            <div className={if(len){lists}}></div>
+    //        );
+    //    }
+    // });
+
+    // 可以考虑使用三元运算符
+    //var ListBox = React.createClass({
+    //    render: function() {
+    //        var len = this.props.lists.length;
+    //        return (
+    //            <div className={len ? 'list' : 'empty'}>测试</div>
+    //       );
+    //    }
+    //});
+
+    // 如果需要组件选择
+    var LoginText = React.createClass({
+        render: function() {
+            var childrenComponents = this.props.children;
+            console.log(typeof childrenComponents);
+            return (
+                    <div>请登录{this.props.children}</div>
+            );
+        }
+    });
+    var LogoutText = React.createClass({
+        render: function() {
+            return (
+                    <div>请退出{this.props.children}</div>
+            );
+        }
+    });
+    var ListBox = React.createClass({
+        render: function() {
+            var childrenComponents = this.props.children;
+            console.log(typeof childrenComponents) // object (length = 2)
+            return (
+                    <div>{childrenComponents}</div>
+            );
+        }
+    });
+
+    // 还是强烈建议使用三元运算符
+
+    ReactDOM.render(
+            <ListBox lists={lists}>
+                <LoginText>, 你好</LoginText>
+                <LogoutText>, 您好</LogoutText>
+            </ListBox>,
+            document.querySelector('#content')
+    )
+</script>
+</body>
+</html>
