@@ -5,17 +5,19 @@ var HTMLWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-    entry: './js/app.js',
+    entry: {
+        'app': './js/app.js'
+    },
     output: {
         path: './build',
         filename: '[hash:8].js'
     },
     module: {
         loaders: [
-            {
-                test: /\.(?:ftl|html)$/,
-                loader: 'html-loader'
-            },
+            // {
+            //     test: /\.(?:ftl)$/,
+            //     loader: 'html-loader'
+            // },
             {
                 test: /\.css$/,
                 loader: ExtractTextWebpackPlugin.extract("style-loader", "css-loader")
@@ -33,11 +35,11 @@ module.exports = {
     plugins: [
         new HTMLWebpackPlugin({
             title: '首页',
-            filename: 'app.ftl',
-            template: './template/app.ftl',
+            filename: 'app.html',
+            template: 'html!./template/app.ejs',
             inject: 'body',
             favicon: './css/favicon.ico'
         }),
-        new ExtractTextWebpackPlugin("[contenthash:8].css")
+        new ExtractTextWebpackPlugin("[name]_[contenthash:8].css")
     ]
 }
