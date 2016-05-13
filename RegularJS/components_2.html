@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://rawgit.com/regularjs/regular/master/dist/regular.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+    var First = Regular.extend({
+        number: '01'
+    });
+
+    var Second = First.extend({
+        number: '02'
+    });
+
+    var Three = Second.extend({
+        number: '03',
+        template: 'hello'
+    });
+
+    var threeInstance = new Three({
+        number: '003'
+    });
+
+    threeInstance.$inject('#app');
+    console.log(threeInstance);
+    </script>
+</body>
+</html>

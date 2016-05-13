@@ -1,0 +1,156 @@
+[I] 2016-05-05 11:55:39.087 - node version is v5.9.0, toolkit version is 1.3.8
+[I] 2016-05-05 11:55:39.107 - parse config file E:/Github/practice/NEJ/release.conf
+[D] 2016-05-05 11:55:39.117 - config result -> {"DIR_CONFIG":"E:/Github/practice/NEJ/","DIR_WEBROOT":"E:/Github/practice/NEJ/","DIR_SOURCE":"E:/Github/practice/NEJ/src/html/","DIR_OUTPUT":"E:/Github/practice/NEJ/pub/","DIR_OUTPUT_TP":"E:/Github/practice/NEJ/pub/","DIR_OUTPUT_STATIC":"E:/Github/practice/NEJ/pub/","DIR_STATIC":"E:/Github/practice/NEJ/src/res/","ALIAS_MATCH":{},"ALIAS_DICTIONARY":{},"DM_STATIC":[],"DM_STATIC_CS":[],"DM_STATIC_JS":[],"DM_STATIC_RS":[],"FILE_FILTER":{},"FILE_CHARSET":"utf-8","VERSION_MODE":"[FILENAME]_[VERSION]","VERSION_STATIC":false,"CORE_MERGE_FLAG":0,"CORE_NOPARSE_FLAG":0,"WRP_INLINE_SOURCE":"%s","CPRS_FLAG":0,"CPRS_KEEP_COMMENT":false,"NEJ_REGULAR":"regularjs","NEJ_PLATFORM":"","NEJ_PROCESSOR":{},"NEJ_INJECTOR":"I$","NEI_PROJECT_ID":0,"OPT_IMAGE_FLAG":false,"OPT_IMAGE_QUALITY":100,"MANIFEST_OUTPUT":"E:/Github/practice/NEJ/cache.manifest","MANIFEST_TEMPLATE":"CACHE MANIFEST\n#VERSION = #<VERSION>\n\nCACHE:\n#<CACHE_LIST>\n\nNETWORK:\n*\n\nFALLBACK:\n","OBF_LEVEL":0,"OBF_NAME_BAGS":"E:/Github/practice/NEJ/names.json","OBF_COMPATIBLE":true,"OBF_SOURCE_MAP":false,"OBF_MAX_CS_INLINE_SIZE":50,"OBF_MAX_JS_INLINE_SIZE":0,"OBF_CORE_INLINE_FLAG":0,"OBF_DROP_CONSOLE":false,"CORE_FREQUENCY_JS":2,"CORE_FREQUENCY_CS":2,"CORE_IGNORE_ENTRY":false,"WRP_SCRIPT_SOURCE":"%s","WRP_INLINE_CS":"<textarea name=\"css\">%s</textarea>","WRP_EXLINE_CS":"<textarea name=\"css\" data-src=\"%s\"></textarea>","WRP_INLINE_JS":"<textarea name=\"js\">%s</textarea>","WRP_EXLINE_JS":"<textarea name=\"js\" data-src=\"%s\"></textarea>","WRP_INLINE_TP":"<textarea id=\"%s\" name=\"%s\">%s</textarea>","WRP_INLINE_STYLE":"<style type=\"text/css\">\n%s\n</style>","WRP_EXLINE_STYLE":"<link rel=\"stylesheet\" href=\"%s\"/>","WRP_INLINE_SCRIPT":"<script>\n%s\n</script>","WRP_EXLINE_SCRIPT":"<script src=\"%s\"></script>","X_AUTO_EXLINK_PATH":false,"X_AUTO_EXLINK_SCRIPT":false,"X_RELEASE_MODE":"online","X_LOGGER_LEVEL":"ALL","X_LOGGER_FILE":"E:/Github/practice/NEJ/20160505115539117.log","":""}
+[D] 2016-05-05 11:55:39.117 - overwrite X_RELEASE_MODE to online
+[D] 2016-05-05 11:55:39.117 - overwrite X_LOGGER_LEVEL to ALL
+[I] 2016-05-05 11:55:39.117 - cache nej config
+[I] 2016-05-05 11:55:39.117 - prepare merge config
+[I] 2016-05-05 11:55:39.117 - dump html files
+[I] 2016-05-05 11:55:39.127 - dump template files
+[I] 2016-05-05 11:55:39.127 - parse input files
+[D] 2016-05-05 11:55:39.127 - loading resource E:/Github/practice/NEJ/src/html/about.html
+[D] 2016-05-05 11:55:39.137 - loading resource E:/Github/practice/NEJ/src/html/home.html
+[D] 2016-05-05 11:55:39.137 - parse resource E:/Github/practice/NEJ/src/html/about.html
+[D] 2016-05-05 11:55:39.147 - loading resource E:/Github/practice/NEJ/src/css/core.css
+[D] 2016-05-05 11:55:39.157 - loading resource E:/Github/practice/NEJ/src/css/about.css
+[D] 2016-05-05 11:55:39.157 - loading resource C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js
+[D] 2016-05-05 11:55:39.157 - loading resource E:/Github/practice/NEJ/src/js/pages/about.js
+[D] 2016-05-05 11:55:39.167 - parse resource E:/Github/practice/NEJ/src/html/home.html
+[D] 2016-05-05 11:55:39.167 - loading resource E:/Github/practice/NEJ/src/css/home.css
+[D] 2016-05-05 11:55:39.177 - loading resource E:/Github/practice/NEJ/src/js/pages/home.js
+[D] 2016-05-05 11:55:39.177 - parse resource E:/Github/practice/NEJ/src/css/core.css
+[D] 2016-05-05 11:55:39.187 - parse resource E:/Github/practice/NEJ/src/css/about.css
+[D] 2016-05-05 11:55:39.197 - parse resource C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js
+[D] 2016-05-05 11:55:39.197 - parse resource E:/Github/practice/NEJ/src/js/pages/about.js
+[D] 2016-05-05 11:55:39.207 - cache nej dependency E:/Github/practice/NEJ/src/js/pages/about.js -> ["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js",{"uri":"E:/Github/practice/NEJ/src/js/lib/base/event.js"}]
+[D] 2016-05-05 11:55:39.207 - loading resource E:/Github/practice/NEJ/src/js/lib/base/event.js
+[D] 2016-05-05 11:55:39.207 - parse resource E:/Github/practice/NEJ/src/js/pages/home.js
+[D] 2016-05-05 11:55:39.217 - cache nej dependency E:/Github/practice/NEJ/src/js/pages/home.js -> ["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js",{"uri":"E:/Github/practice/NEJ/src/js/lib/base/event.js"}]
+[D] 2016-05-05 11:55:39.247 - parse resource E:/Github/practice/NEJ/src/css/home.css
+[W] 2016-05-05 11:55:39.418 - resource E:/Github/practice/NEJ/images/modules/about/about-header.jpg in file E:/Github/practice/NEJ/src/css/home.css not exist
+[W] 2016-05-05 11:55:39.418 - resource E:/Github/practice/NEJ/images/modules/about/team-header.jpg in file E:/Github/practice/NEJ/src/css/home.css not exist
+[W] 2016-05-05 11:55:39.418 - resource E:/Github/practice/NEJ/images/modules/about/press-header.jpg in file E:/Github/practice/NEJ/src/css/home.css not exist
+[W] 2016-05-05 11:55:39.428 - resource E:/Github/practice/NEJ/images/modules/about/jobs-header.jpg in file E:/Github/practice/NEJ/src/css/home.css not exist
+[W] 2016-05-05 11:55:39.428 - resource E:/Github/practice/NEJ/images/icons/twitter-white.png in file E:/Github/practice/NEJ/src/css/home.css not exist
+[W] 2016-05-05 11:55:39.428 - resource E:/Github/practice/NEJ/images/icons/twitter.png in file E:/Github/practice/NEJ/src/css/home.css not exist
+[W] 2016-05-05 11:55:39.438 - resource E:/Github/practice/NEJ/images/icons/twitter.png in file E:/Github/practice/NEJ/src/css/home.css not exist
+[W] 2016-05-05 11:55:39.438 - resource E:/Github/practice/NEJ/images/spinners/octocat-spinner-32.gif in file E:/Github/practice/NEJ/src/css/home.css not exist
+[W] 2016-05-05 11:55:39.438 - resource E:/Github/practice/NEJ/images/spinners/octocat-spinner-64.gif in file E:/Github/practice/NEJ/src/css/home.css not exist
+[W] 2016-05-05 11:55:39.448 - resource E:/Github/practice/NEJ/images/modules/jobs/logo.png in file E:/Github/practice/NEJ/src/css/home.css not exist
+[W] 2016-05-05 11:55:39.448 - resource E:/Github/practice/NEJ/images/modules/pulls/progressive-disclosure-line@2x.png in file E:/Github/practice/NEJ/src/css/home.css not exist
+[W] 2016-05-05 11:55:39.448 - resource E:/Github/practice/NEJ/images/modules/home/octicons-bg.png in file E:/Github/practice/NEJ/src/css/home.css not exist
+[W] 2016-05-05 11:55:39.458 - resource E:/Github/practice/NEJ/images/modules/commit/trans_bg.gif in file E:/Github/practice/NEJ/src/css/home.css not exist
+[W] 2016-05-05 11:55:39.458 - resource E:/Github/practice/NEJ/images/modules/commit/trans_bg.gif in file E:/Github/practice/NEJ/src/css/home.css not exist
+[W] 2016-05-05 11:55:39.458 - resource E:/Github/practice/NEJ/images/icons/ie-notice.png in file E:/Github/practice/NEJ/src/css/home.css not exist
+[W] 2016-05-05 11:55:39.468 - resource E:/Github/practice/NEJ/images/modules/comments/closed_pattern.gif in file E:/Github/practice/NEJ/src/css/home.css not exist
+[W] 2016-05-05 11:55:39.468 - resource E:/Github/practice/NEJ/images/modules/orgs/dots-bg.png in file E:/Github/practice/NEJ/src/css/home.css not exist
+[W] 2016-05-05 11:55:39.468 - resource E:/Github/practice/NEJ/images/spinners/octocat-spinner-16px.gif in file E:/Github/practice/NEJ/src/css/home.css not exist
+[W] 2016-05-05 11:55:39.478 - resource E:/Github/practice/NEJ/images/spinners/octocat-spinner-32.gif in file E:/Github/practice/NEJ/src/css/home.css not exist
+[W] 2016-05-05 11:55:39.478 - resource E:/Github/practice/NEJ/images/spinners/octocat-spinner-128.gif in file E:/Github/practice/NEJ/src/css/home.css not exist
+[W] 2016-05-05 11:55:39.478 - resource E:/Github/practice/NEJ/images/modules/settings/2fa_guide.png in file E:/Github/practice/NEJ/src/css/home.css not exist
+[W] 2016-05-05 11:55:39.488 - resource E:/Github/practice/NEJ/images/modules/settings/2fa_guide@2x.png in file E:/Github/practice/NEJ/src/css/home.css not exist
+[D] 2016-05-05 11:55:39.488 - parse resource E:/Github/practice/NEJ/src/js/lib/base/event.js
+[D] 2016-05-05 11:55:39.498 - cache nej dependency E:/Github/practice/NEJ/src/js/lib/base/event.js -> ["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js",{"uri":"E:/Github/practice/NEJ/src/js/lib/base/global.js"},{"uri":"E:/Github/practice/NEJ/src/js/lib/base/element.js"},{"uri":"E:/Github/practice/NEJ/src/js/lib/base/util.js"},{"uri":"E:/Github/practice/NEJ/src/js/lib/base/chain.js"},{"uri":"E:/Github/practice/NEJ/src/js/lib/base/platform/event.js","patch":"E:/Github/practice/NEJ/src/js/lib/base/platform/event.patch.js"}]
+[D] 2016-05-05 11:55:39.508 - loading resource E:/Github/practice/NEJ/src/js/lib/base/global.js
+[D] 2016-05-05 11:55:39.508 - loading resource E:/Github/practice/NEJ/src/js/lib/base/element.js
+[D] 2016-05-05 11:55:39.508 - loading resource E:/Github/practice/NEJ/src/js/lib/base/util.js
+[D] 2016-05-05 11:55:39.518 - loading resource E:/Github/practice/NEJ/src/js/lib/base/chain.js
+[D] 2016-05-05 11:55:39.518 - loading resource E:/Github/practice/NEJ/src/js/lib/base/platform/event.js
+[D] 2016-05-05 11:55:39.518 - loading resource E:/Github/practice/NEJ/src/js/lib/base/platform/event.patch.js
+[D] 2016-05-05 11:55:39.528 - parse resource E:/Github/practice/NEJ/src/js/lib/base/global.js
+[D] 2016-05-05 11:55:39.528 - cache nej dependency E:/Github/practice/NEJ/src/js/lib/base/global.js -> ["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js"]
+[D] 2016-05-05 11:55:39.538 - parse resource E:/Github/practice/NEJ/src/js/lib/base/element.js
+[D] 2016-05-05 11:55:39.548 - cache nej dependency E:/Github/practice/NEJ/src/js/lib/base/element.js -> ["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js",{"uri":"E:/Github/practice/NEJ/src/js/lib/base/global.js"},{"uri":"E:/Github/practice/NEJ/src/js/lib/base/constant.js"},{"uri":"E:/Github/practice/NEJ/src/js/lib/base/util.js"},{"uri":"E:/Github/practice/NEJ/src/js/lib/base/event.js"},{"uri":"E:/Github/practice/NEJ/src/js/lib/base/chain.js"},{"uri":"E:/Github/practice/NEJ/src/js/lib/base/platform/element.js","patch":"E:/Github/practice/NEJ/src/js/lib/base/platform/element.patch.js"}]
+[D] 2016-05-05 11:55:39.548 - loading resource E:/Github/practice/NEJ/src/js/lib/base/constant.js
+[D] 2016-05-05 11:55:39.558 - loading resource E:/Github/practice/NEJ/src/js/lib/base/platform/element.js
+[D] 2016-05-05 11:55:39.558 - loading resource E:/Github/practice/NEJ/src/js/lib/base/platform/element.patch.js
+[D] 2016-05-05 11:55:39.558 - parse resource E:/Github/practice/NEJ/src/js/lib/base/chain.js
+[D] 2016-05-05 11:55:39.568 - cache nej dependency E:/Github/practice/NEJ/src/js/lib/base/chain.js -> ["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js",{"uri":"E:/Github/practice/NEJ/src/js/lib/base/util.js"}]
+[D] 2016-05-05 11:55:39.568 - parse resource E:/Github/practice/NEJ/src/js/lib/base/util.js
+[D] 2016-05-05 11:55:39.578 - cache nej dependency E:/Github/practice/NEJ/src/js/lib/base/util.js -> ["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js",{"uri":"E:/Github/practice/NEJ/src/js/lib/base/global.js"},{"uri":"E:/Github/practice/NEJ/src/js/lib/base/platform/util.js","patch":"E:/Github/practice/NEJ/src/js/lib/base/platform/util.patch.js"}]
+[D] 2016-05-05 11:55:39.588 - loading resource E:/Github/practice/NEJ/src/js/lib/base/platform/util.js
+[D] 2016-05-05 11:55:39.588 - loading resource E:/Github/practice/NEJ/src/js/lib/base/platform/util.patch.js
+[D] 2016-05-05 11:55:39.588 - parse resource E:/Github/practice/NEJ/src/js/lib/base/platform/event.js
+[D] 2016-05-05 11:55:39.598 - cache nej dependency E:/Github/practice/NEJ/src/js/lib/base/platform/event.js -> ["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js",{"uri":"E:/Github/practice/NEJ/src/js/lib/base/util.js"},{"uri":"E:/Github/practice/NEJ/src/js/lib/base/platform.js"}]
+[D] 2016-05-05 11:55:39.598 - loading resource E:/Github/practice/NEJ/src/js/lib/base/platform.js
+[D] 2016-05-05 11:55:39.608 - parse resource E:/Github/practice/NEJ/src/js/lib/base/platform/event.patch.js
+[D] 2016-05-05 11:55:39.608 - parse nej patch file E:/Github/practice/NEJ/src/js/lib/base/platform/event.patch.js
+[D] 2016-05-05 11:55:39.618 - platform argument name is b1462420539618
+[D] 2016-05-05 11:55:39.618 - patch expression TR>=6.0 fit to platform 
+[D] 2016-05-05 11:55:39.618 - patch expression TR==5.0 fit to platform 
+[D] 2016-05-05 11:55:39.628 - patch expression TR>=5.0 fit to platform 
+[D] 2016-05-05 11:55:39.628 - patch expression TR<=4.0 fit to platform 
+[D] 2016-05-05 11:55:39.628 - patch expression GR fit to platform 
+[D] 2016-05-05 11:55:39.638 - patch merge result []
+[D] 2016-05-05 11:55:39.638 - cache nej dependency E:/Github/practice/NEJ/src/js/lib/base/platform/event.patch.js -> ["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js",{"uri":"E:/Github/practice/NEJ/src/js/lib/base/platform.js"},{"uri":"E:/Github/practice/NEJ/src/js/lib/base/platform/event.js"},{"uri":"E:/Github/practice/NEJ/src/js/lib/base/util.js"}]
+[D] 2016-05-05 11:55:39.648 - parse resource E:/Github/practice/NEJ/src/js/lib/base/platform/element.js
+[D] 2016-05-05 11:55:39.648 - cache nej dependency E:/Github/practice/NEJ/src/js/lib/base/platform/element.js -> ["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js",{"uri":"E:/Github/practice/NEJ/src/js/lib/base/util.js"},{"uri":"E:/Github/practice/NEJ/src/js/lib/base/platform.js"}]
+[D] 2016-05-05 11:55:39.658 - parse resource E:/Github/practice/NEJ/src/js/lib/base/constant.js
+[D] 2016-05-05 11:55:39.658 - cache nej dependency E:/Github/practice/NEJ/src/js/lib/base/constant.js -> ["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js",{"uri":"E:/Github/practice/NEJ/src/js/lib/base/global.js"},{"uri":"E:/Github/practice/NEJ/src/js/lib/base/config.js"}]
+[D] 2016-05-05 11:55:39.668 - loading resource E:/Github/practice/NEJ/src/js/lib/base/config.js
+[D] 2016-05-05 11:55:39.668 - parse resource E:/Github/practice/NEJ/src/js/lib/base/platform/element.patch.js
+[D] 2016-05-05 11:55:39.668 - parse nej patch file E:/Github/practice/NEJ/src/js/lib/base/platform/element.patch.js
+[D] 2016-05-05 11:55:39.678 - platform argument name is _m
+[D] 2016-05-05 11:55:39.678 - patch expression TR fit to platform 
+[D] 2016-05-05 11:55:39.678 - patch expression TR<=6.0 fit to platform 
+[D] 2016-05-05 11:55:39.688 - patch expression TR<=5.0 fit to platform 
+[D] 2016-05-05 11:55:39.688 - patch expression TR<=4.0 fit to platform 
+[D] 2016-05-05 11:55:39.688 - patch expression TR<=3.0 fit to platform 
+[D] 2016-05-05 11:55:39.698 - patch expression TR<=2.0 fit to platform 
+[D] 2016-05-05 11:55:39.698 - patch expression GR fit to platform 
+[D] 2016-05-05 11:55:39.698 - patch merge result []
+[D] 2016-05-05 11:55:39.708 - cache nej dependency E:/Github/practice/NEJ/src/js/lib/base/platform/element.patch.js -> ["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js",{"uri":"E:/Github/practice/NEJ/src/js/lib/base/platform/element.js"},{"uri":"E:/Github/practice/NEJ/src/js/lib/base/platform.js"},{"uri":"E:/Github/practice/NEJ/src/js/lib/base/util.js"}]
+[D] 2016-05-05 11:55:39.708 - parse resource E:/Github/practice/NEJ/src/js/lib/base/platform/util.js
+[D] 2016-05-05 11:55:39.718 - cache nej dependency E:/Github/practice/NEJ/src/js/lib/base/platform/util.js -> ["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js"]
+[D] 2016-05-05 11:55:39.718 - parse resource E:/Github/practice/NEJ/src/js/lib/base/platform/util.patch.js
+[D] 2016-05-05 11:55:39.728 - parse nej patch file E:/Github/practice/NEJ/src/js/lib/base/platform/util.patch.js
+[D] 2016-05-05 11:55:39.728 - platform argument name is _m
+[D] 2016-05-05 11:55:39.728 - patch expression TR<=4.0 fit to platform 
+[D] 2016-05-05 11:55:39.738 - patch merge result []
+[D] 2016-05-05 11:55:39.738 - cache nej dependency E:/Github/practice/NEJ/src/js/lib/base/platform/util.patch.js -> ["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js",{"uri":"E:/Github/practice/NEJ/src/js/lib/base/platform/util.js"},{"uri":"E:/Github/practice/NEJ/src/js/lib/base/platform.js"}]
+[D] 2016-05-05 11:55:39.738 - parse resource E:/Github/practice/NEJ/src/js/lib/base/platform.js
+[D] 2016-05-05 11:55:39.748 - cache nej dependency E:/Github/practice/NEJ/src/js/lib/base/platform.js -> ["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js",{"uri":"E:/Github/practice/NEJ/src/js/lib/base/global.js"}]
+[D] 2016-05-05 11:55:39.748 - parse resource E:/Github/practice/NEJ/src/js/lib/base/config.js
+[D] 2016-05-05 11:55:39.758 - cache nej dependency E:/Github/practice/NEJ/src/js/lib/base/config.js -> ["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js",{"uri":"E:/Github/practice/NEJ/src/js/lib/base/global.js"},{"uri":"E:/Github/practice/NEJ/src/js/lib/base/platform/config.js","patch":"E:/Github/practice/NEJ/src/js/lib/base/platform/config.patch.js"}]
+[D] 2016-05-05 11:55:39.758 - loading resource E:/Github/practice/NEJ/src/js/lib/base/platform/config.js
+[D] 2016-05-05 11:55:39.768 - loading resource E:/Github/practice/NEJ/src/js/lib/base/platform/config.patch.js
+[D] 2016-05-05 11:55:39.768 - parse resource E:/Github/practice/NEJ/src/js/lib/base/platform/config.patch.js
+[D] 2016-05-05 11:55:39.778 - parse nej patch file E:/Github/practice/NEJ/src/js/lib/base/platform/config.patch.js
+[D] 2016-05-05 11:55:39.778 - platform argument name is _m
+[D] 2016-05-05 11:55:39.778 - patch expression TR fit to platform 
+[D] 2016-05-05 11:55:39.778 - patch expression TR<=3.0 fit to platform 
+[D] 2016-05-05 11:55:39.788 - patch merge result []
+[D] 2016-05-05 11:55:39.788 - cache nej dependency E:/Github/practice/NEJ/src/js/lib/base/platform/config.patch.js -> ["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js",{"uri":"E:/Github/practice/NEJ/src/js/lib/base/platform/config.js"},{"uri":"E:/Github/practice/NEJ/src/js/lib/base/platform.js"}]
+[D] 2016-05-05 11:55:39.788 - parse resource E:/Github/practice/NEJ/src/js/lib/base/platform/config.js
+[D] 2016-05-05 11:55:39.798 - cache nej dependency E:/Github/practice/NEJ/src/js/lib/base/platform/config.js -> ["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js",{"uri":"E:/Github/practice/NEJ/src/js/lib/base/global.js"},{"uri":"E:/Github/practice/NEJ/src/js/lib/base/util.js"}]
+[D] 2016-05-05 11:55:39.798 - dependencies map -> {"E:/Github/practice/NEJ/src/js/pages/about.js":["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js","E:/Github/practice/NEJ/src/js/lib/base/event.js"],"E:/Github/practice/NEJ/src/js/pages/home.js":["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js","E:/Github/practice/NEJ/src/js/lib/base/event.js"],"E:/Github/practice/NEJ/src/js/lib/base/event.js":["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js","E:/Github/practice/NEJ/src/js/lib/base/global.js","E:/Github/practice/NEJ/src/js/lib/base/element.js","E:/Github/practice/NEJ/src/js/lib/base/util.js","E:/Github/practice/NEJ/src/js/lib/base/chain.js","E:/Github/practice/NEJ/src/js/lib/base/platform/event.patch.js"],"E:/Github/practice/NEJ/src/js/lib/base/global.js":["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js"],"E:/Github/practice/NEJ/src/js/lib/base/element.js":["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js","E:/Github/practice/NEJ/src/js/lib/base/global.js","E:/Github/practice/NEJ/src/js/lib/base/constant.js","E:/Github/practice/NEJ/src/js/lib/base/util.js","E:/Github/practice/NEJ/src/js/lib/base/event.js","E:/Github/practice/NEJ/src/js/lib/base/chain.js","E:/Github/practice/NEJ/src/js/lib/base/platform/element.patch.js"],"E:/Github/practice/NEJ/src/js/lib/base/chain.js":["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js","E:/Github/practice/NEJ/src/js/lib/base/util.js"],"E:/Github/practice/NEJ/src/js/lib/base/util.js":["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js","E:/Github/practice/NEJ/src/js/lib/base/global.js","E:/Github/practice/NEJ/src/js/lib/base/platform/util.patch.js"],"E:/Github/practice/NEJ/src/js/lib/base/platform/event.js":["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js","E:/Github/practice/NEJ/src/js/lib/base/util.js","E:/Github/practice/NEJ/src/js/lib/base/platform.js"],"E:/Github/practice/NEJ/src/js/lib/base/platform/event.patch.js":["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js","E:/Github/practice/NEJ/src/js/lib/base/platform.js","E:/Github/practice/NEJ/src/js/lib/base/platform/event.js","E:/Github/practice/NEJ/src/js/lib/base/util.js"],"E:/Github/practice/NEJ/src/js/lib/base/platform/element.js":["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js","E:/Github/practice/NEJ/src/js/lib/base/util.js","E:/Github/practice/NEJ/src/js/lib/base/platform.js"],"E:/Github/practice/NEJ/src/js/lib/base/constant.js":["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js","E:/Github/practice/NEJ/src/js/lib/base/global.js","E:/Github/practice/NEJ/src/js/lib/base/config.js"],"E:/Github/practice/NEJ/src/js/lib/base/platform/element.patch.js":["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js","E:/Github/practice/NEJ/src/js/lib/base/platform/element.js","E:/Github/practice/NEJ/src/js/lib/base/platform.js","E:/Github/practice/NEJ/src/js/lib/base/util.js"],"E:/Github/practice/NEJ/src/js/lib/base/platform/util.js":["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js"],"E:/Github/practice/NEJ/src/js/lib/base/platform/util.patch.js":["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js","E:/Github/practice/NEJ/src/js/lib/base/platform/util.js","E:/Github/practice/NEJ/src/js/lib/base/platform.js"],"E:/Github/practice/NEJ/src/js/lib/base/platform.js":["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js","E:/Github/practice/NEJ/src/js/lib/base/global.js"],"E:/Github/practice/NEJ/src/js/lib/base/config.js":["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js","E:/Github/practice/NEJ/src/js/lib/base/global.js","E:/Github/practice/NEJ/src/js/lib/base/platform/config.patch.js"],"E:/Github/practice/NEJ/src/js/lib/base/platform/config.patch.js":["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js","E:/Github/practice/NEJ/src/js/lib/base/platform/config.js","E:/Github/practice/NEJ/src/js/lib/base/platform.js"],"E:/Github/practice/NEJ/src/js/lib/base/platform/config.js":["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js","E:/Github/practice/NEJ/src/js/lib/base/global.js","E:/Github/practice/NEJ/src/js/lib/base/util.js"]}
+[I] 2016-05-05 11:55:39.808 - merge core list
+[D] 2016-05-05 11:55:39.808 - style used in file E:/Github/practice/NEJ/src/html/about.html is ["E:/Github/practice/NEJ/src/css/core.css","E:/Github/practice/NEJ/src/css/about.css"]
+[D] 2016-05-05 11:55:39.818 - style used in file E:/Github/practice/NEJ/src/html/home.html is ["E:/Github/practice/NEJ/src/css/core.css","E:/Github/practice/NEJ/src/css/home.css"]
+[D] 2016-05-05 11:55:39.818 - core style list -> ["E:/Github/practice/NEJ/src/css/core.css"]
+[D] 2016-05-05 11:55:39.818 - script used in file E:/Github/practice/NEJ/src/html/about.html is ["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js","E:/Github/practice/NEJ/src/js/lib/base/global.js","E:/Github/practice/NEJ/src/js/lib/base/platform/util.js","E:/Github/practice/NEJ/src/js/lib/base/platform.js","E:/Github/practice/NEJ/src/js/lib/base/platform/util.patch.js","E:/Github/practice/NEJ/src/js/lib/base/util.js","E:/Github/practice/NEJ/src/js/lib/base/platform/config.js","E:/Github/practice/NEJ/src/js/lib/base/platform/config.patch.js","E:/Github/practice/NEJ/src/js/lib/base/config.js","E:/Github/practice/NEJ/src/js/lib/base/constant.js","E:/Github/practice/NEJ/src/js/lib/base/chain.js","E:/Github/practice/NEJ/src/js/lib/base/platform/element.js","E:/Github/practice/NEJ/src/js/lib/base/platform/element.patch.js","E:/Github/practice/NEJ/src/js/lib/base/element.js","E:/Github/practice/NEJ/src/js/lib/base/platform/event.js","E:/Github/practice/NEJ/src/js/lib/base/platform/event.patch.js","E:/Github/practice/NEJ/src/js/lib/base/event.js","E:/Github/practice/NEJ/src/js/pages/about.js"]
+[D] 2016-05-05 11:55:39.828 - script used in file E:/Github/practice/NEJ/src/html/home.html is ["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js","E:/Github/practice/NEJ/src/js/lib/base/global.js","E:/Github/practice/NEJ/src/js/lib/base/platform/util.js","E:/Github/practice/NEJ/src/js/lib/base/platform.js","E:/Github/practice/NEJ/src/js/lib/base/platform/util.patch.js","E:/Github/practice/NEJ/src/js/lib/base/util.js","E:/Github/practice/NEJ/src/js/lib/base/platform/config.js","E:/Github/practice/NEJ/src/js/lib/base/platform/config.patch.js","E:/Github/practice/NEJ/src/js/lib/base/config.js","E:/Github/practice/NEJ/src/js/lib/base/constant.js","E:/Github/practice/NEJ/src/js/lib/base/chain.js","E:/Github/practice/NEJ/src/js/lib/base/platform/element.js","E:/Github/practice/NEJ/src/js/lib/base/platform/element.patch.js","E:/Github/practice/NEJ/src/js/lib/base/element.js","E:/Github/practice/NEJ/src/js/lib/base/platform/event.js","E:/Github/practice/NEJ/src/js/lib/base/platform/event.patch.js","E:/Github/practice/NEJ/src/js/lib/base/event.js","E:/Github/practice/NEJ/src/js/pages/home.js"]
+[D] 2016-05-05 11:55:39.828 - core script list -> ["C:/Users/hzgongke/AppData/Roaming/npm/node_modules/nej/lib/script/nej/define.js","E:/Github/practice/NEJ/src/js/lib/base/global.js","E:/Github/practice/NEJ/src/js/lib/base/platform/util.js","E:/Github/practice/NEJ/src/js/lib/base/platform.js","E:/Github/practice/NEJ/src/js/lib/base/platform/util.patch.js","E:/Github/practice/NEJ/src/js/lib/base/util.js","E:/Github/practice/NEJ/src/js/lib/base/platform/config.js","E:/Github/practice/NEJ/src/js/lib/base/platform/config.patch.js","E:/Github/practice/NEJ/src/js/lib/base/config.js","E:/Github/practice/NEJ/src/js/lib/base/constant.js","E:/Github/practice/NEJ/src/js/lib/base/chain.js","E:/Github/practice/NEJ/src/js/lib/base/platform/element.js","E:/Github/practice/NEJ/src/js/lib/base/platform/element.patch.js","E:/Github/practice/NEJ/src/js/lib/base/element.js","E:/Github/practice/NEJ/src/js/lib/base/platform/event.js","E:/Github/practice/NEJ/src/js/lib/base/platform/event.patch.js","E:/Github/practice/NEJ/src/js/lib/base/event.js"]
+[I] 2016-05-05 11:55:39.838 - sort input files by module dependency
+[D] 2016-05-05 11:55:39.838 - page list order by module dependency is ["E:/Github/practice/NEJ/src/html/about.html","E:/Github/practice/NEJ/src/html/home.html"]
+[I] 2016-05-05 11:55:39.838 - split core from input files
+[D] 2016-05-05 11:55:39.848 - pp_about.css -> ["E:/Github/practice/NEJ/src/css/about.css"]
+[D] 2016-05-05 11:55:39.848 - pp_about.js -> ["E:/Github/practice/NEJ/src/js/pages/about.js"]
+[D] 2016-05-05 11:55:39.848 - pp_home.css -> ["E:/Github/practice/NEJ/src/css/home.css"]
+[D] 2016-05-05 11:55:39.858 - pp_home.js -> ["E:/Github/practice/NEJ/src/js/pages/home.js"]
+[I] 2016-05-05 11:55:39.858 - minify script
+[D] 2016-05-05 11:55:40.253 - output script name bags to E:/Github/practice/NEJ/names.json
+[I] 2016-05-05 11:55:40.263 - embed resources to input files
+[I] 2016-05-05 11:55:40.263 - output files
+[D] 2016-05-05 11:55:40.273 - output file E:/Github/practice/NEJ/pub/core_b7f24c4951ef1e3dcfe26c1138c464f3.css
+[D] 2016-05-05 11:55:40.273 - output file E:/Github/practice/NEJ/pub/core_9082e273002e41323ec89278238e96af.js
+[D] 2016-05-05 11:55:40.283 - output file E:/Github/practice/NEJ/pub/pp_about_922e4e54ed5547e60525170a3b7e3add.js
+[D] 2016-05-05 11:55:40.283 - output file E:/Github/practice/NEJ/pub/core_b7f24c4951ef1e3dcfe26c1138c464f3.css
+[D] 2016-05-05 11:55:40.293 - output file E:/Github/practice/NEJ/pub/pp_home_764b1fcf408d9453f1334965df75ceca.css
+[D] 2016-05-05 11:55:40.293 - output file E:/Github/practice/NEJ/pub/core_9082e273002e41323ec89278238e96af.js
+[D] 2016-05-05 11:55:40.293 - output file E:/Github/practice/NEJ/pub/pp_home_c3e09b465738c202ec6255f0a47261c3.js
+[D] 2016-05-05 11:55:40.303 - output file E:/Github/practice/NEJ/pub/about.html
+[D] 2016-05-05 11:55:40.303 - output file E:/Github/practice/NEJ/pub/home.html
+[D] 2016-05-05 11:55:40.323 - version map -> {"/pub/core_b7f24c4951ef1e3dcfe26c1138c464f3.css":"b7f24c4951ef1e3dcfe26c1138c464f3","/pub/core_9082e273002e41323ec89278238e96af.js":"9082e273002e41323ec89278238e96af","/pub/pp_about_922e4e54ed5547e60525170a3b7e3add.js":"922e4e54ed5547e60525170a3b7e3add","/pub/pp_home_764b1fcf408d9453f1334965df75ceca.css":"764b1fcf408d9453f1334965df75ceca","/pub/pp_home_c3e09b465738c202ec6255f0a47261c3.js":"c3e09b465738c202ec6255f0a47261c3"}
+[D] 2016-05-05 11:55:40.323 - file key map -> {"E:/Github/practice/NEJ/src/js/lib/base/event.js":1,"E:/Github/practice/NEJ/src/js/pages/about.js":2,"E:/Github/practice/NEJ/src/js/pages/home.js":3,"E:/Github/practice/NEJ/src/js/lib/base/global.js":4,"E:/Github/practice/NEJ/src/js/lib/base/element.js":5,"E:/Github/practice/NEJ/src/js/lib/base/util.js":6,"E:/Github/practice/NEJ/src/js/lib/base/chain.js":7,"E:/Github/practice/NEJ/src/js/lib/base/platform/event.patch.js":8,"E:/Github/practice/NEJ/src/js/lib/base/constant.js":9,"E:/Github/practice/NEJ/src/js/lib/base/platform/element.patch.js":10,"E:/Github/practice/NEJ/src/js/lib/base/platform/util.patch.js":11,"E:/Github/practice/NEJ/src/js/lib/base/platform.js":12,"E:/Github/practice/NEJ/src/js/lib/base/platform/event.js":13,"E:/Github/practice/NEJ/src/js/lib/base/platform/element.js":19,"E:/Github/practice/NEJ/src/js/lib/base/config.js":20,"E:/Github/practice/NEJ/src/js/lib/base/platform/util.js":28,"E:/Github/practice/NEJ/src/js/lib/base/platform/config.patch.js":30,"E:/Github/practice/NEJ/src/js/lib/base/platform/config.js":33}
+[I] 2016-05-05 11:55:40.333 - release done and log file is E:/Github/practice/NEJ/20160505115539117.log

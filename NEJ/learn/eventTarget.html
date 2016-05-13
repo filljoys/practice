@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>nej</title>
+</head>
+<body>
+<script src="lib/define.js"></script>
+<script>
+    NEJ.define([
+        'base/klass',
+        'util/event'
+    ], function(_k, _v, _p) {
+        var _pro;
+        _p._$$TestWidget = _k._$klass();
+        _p._$$TestWidget._$showtest = function() {
+            console.log('just show test');
+        }
+        _pro = _p._$$TestWidget._$extend(_v._$$EventTarget);
+        _pro.__init = function(option) {
+            this.__super(option);
+            this._name = option.name;
+        }
+        console.log(_p._$$TestWidget);
+        var _test = _p._$$TestWidget._$allocate({name: 'gongke'});
+        console.log(_test)
+        //var _test2 = _p._$$TestWidget._$allocate({name: 'gongke2'});
+
+        //console.log(_p._$$TestWidget._$recycle([_test, _test2]));
+    });
+</script>
+</body>
+</html>

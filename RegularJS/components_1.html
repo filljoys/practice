@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://rawgit.com/regularjs/regular/master/dist/regular.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script id="hello" type="text/regular" name="hello">
+        <div r-html="blog"></div>
+        {#if username}
+            Hello, {username} <a href="javascript:;" on-click={username=""}>Logout</a>
+        {#else}
+            Hello, Guest <a href="javascript:;" on-click={this.login()}>Login</a>
+        {/if}
+        {blog}
+        <input type="text" r-model="blog">
+    </script>
+    <script id="com">
+        <pager></pager>
+    </script>
+    <script>
+        // 注册指令
+        Regular.directive('r-html', function(elem, value) {
+            this.$watch(value, function(newValue) {
+                elem.innerHTML = newValue;
+            })
+        });
+        var HelloRegular = Regular.extend({
+            //template: '#hello',
+            // login: function() {
+            //     var data = this.data;
+            //     data.username = prompt('请输入你的姓名：');
+            // }
+        });
+
+        var Pager = Regular.extend({
+            template: '1 2 [3] 4 5 6'
+        });
+
+        Regular.component('pager', Pager)
+
+        var component = new HelloRegular({
+            template: '#com',
+            data: {
+                username: 'gongke',
+                blog: 'this is a blog'
+            }
+        });
+        component.$inject('#app');
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>NEJ模块调度系统</title>
+<style>
+#root {
+    background: #88f;
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="../lib/define.js"></script>
+<script>
+NEJ.define([
+    'base/klass',
+    'base/element',
+    'util/dispatcher/dispatcher'
+], function(_k, _e, _t, _p) {
+    _t._$startup({
+        rules: {
+            title: {
+                '/m/blog/': '博客',
+                '/m/setting/': '设置'
+            },
+            alias: {
+                'system': '/m',
+                'blog': '/m/blog/',
+                'setting': '/m/setting/'
+            }
+        },
+        modules: {
+            '/m': 'module/layout/system/index.html',
+            '/m/blog/': 'module/blog/index.html',
+            '/m/setting/': 'module/setting/index.html'
+        },
+        onbeforechange: function(_options) {
+            console.log(_options);
+        }
+    });
+});
+</script>
+</body>
+</html>

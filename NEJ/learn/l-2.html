@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NEJ模板</title>
+</head>
+<body>
+<textarea name="txt" id="txt-template-02">
+    <div>
+        <h1>模板之Txt类型</h1>
+        <p>此类模板后续可以使用_$getTextTemplate接口获取</p>
+    </div>
+</textarea>
+<!-- <script src="lib/regular.min.js"></script> -->
+<script src="lib/define.js"></script>
+<script>
+NEJ.define([
+    'util/template/tpl'
+], function(_t) {
+    _t._$addTextTemplate('\
+       <div>\
+        <h1>TPL</h1>\
+        </div>',
+    'txt-template-1');
+
+    _t._$parseTemplate('txt-template-02');
+
+    var _text = _t._$getTextTemplate('txt-template-02');
+
+    document.body.innerHTML = _text;
+});
+</script>
+</body>
+</html>

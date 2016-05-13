@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>nej</title>
+</head>
+<body>
+<script src="lib/define.js"></script>
+<script>
+    NEJ.define([
+        'base/klass'
+    ], function(_k, _p) {
+        // 定义父类 A
+        _p.A = _k._$klass();
+
+        NEJ.patch('WR', ['{lib}/hack_ie6.js'], function() {
+            console.log('this is TR2');
+        });
+
+        var pro = _p.A.prototype;
+        pro.__init = function() {
+            console.log('init A class')
+        }
+
+        pro.__doSome = function() {
+            console.log('do something for A class');
+        }
+
+        _p.B = _k._$klass();
+        var proB = _p.B._$extend(_p.A);
+        proB.__init = function() {
+            this.__super();
+            console.log('init B class');
+        }
+
+        new _p.B();
+    });
+</script>
+</body>
+</html>
