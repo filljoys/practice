@@ -24,8 +24,8 @@ NEJ.define([
         var _that = this;
         var _modifyHeadBtn = _v._$addEvent(
             'modifyHeadBtn', 'click', function(_event) {
-                _that.__doSendMessage('/m', {txt: '来自遥远的订单'})
-            }, false
+                this.__doSendMessage('/m', {txt: '来自遥远的订单'})
+            }._$bind(this), false
         );
     }
 
