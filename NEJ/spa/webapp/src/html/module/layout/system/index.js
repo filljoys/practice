@@ -21,7 +21,7 @@ NEJ.define([
      * @param   {Object}  可选配置参数，已处理参数列表如下所示
      */
     _p._$$ModuleLayoutSystem = _k._$klass();
-    _pro = _p._$$ModuleLayoutSystem._$extend(_m._$$ModuleAbstract);
+    _pro = _p._$$ModuleLayoutSystem._$extend(_m._$$Module);
     /**
      * 解析模块所在容器节点
      * @param  {Object} 配置信息

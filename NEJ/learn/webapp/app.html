@@ -3,23 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <title>NEJ模块调度系统</title>
-<style>
-#root {
-    background: #88f;
-}
-</style>
+<link rel="stylesheet" href="../lib/dist/css/regular-ui.flat.min.css">
 </head>
 <body>
 <div id="root"></div>
+<script src="../lib/regular.min.js"></script>
+<script src="../lib/dist/js/regular-ui.min.js"></script>
 <script src="../lib/define.js"></script>
 <script>
 NEJ.define([
     'base/klass',
     'base/element',
-    'util/dispatcher/dispatcher'
-], function(_k, _e, _t, _p) {
+    'util/dispatcher/dispatcher',
+    './module/blog/index.js'
+], function(_k, _e, _t, _$$BlogModule,_p) {
     _t._$startup({
         rules: {
+            rewrite: {
+                404: '/m/blog/'
+            },
             title: {
                 '/m/blog/': '博客',
                 '/m/setting/': '设置'
@@ -27,16 +29,29 @@ NEJ.define([
             alias: {
                 'system': '/m',
                 'blog': '/m/blog/',
-                'setting': '/m/setting/'
+                'setting': '/m/setting/',
+                'system-tab': '/?/tab/'
             }
         },
         modules: {
-            '/m': 'module/layout/system/index.html',
-            '/m/blog/': 'module/blog/index.html',
+            '/?/tab/': 'module/tab/index.html',
+
+            '/m': {
+                module: 'module/layout/system/index.html',
+                composite: {
+                    tab: '/?/tab/'
+                }
+            },
+            '/m/blog/': _$$BlogModule,
             '/m/setting/': 'module/setting/index.html'
         },
         onbeforechange: function(_options) {
-            console.log(_options);
+            var _umi = _options.path||'';
+            if (!!_umi&&
+                _umi.indexOf('/?')<0&&
+                _umi.indexOf('/m')<0) {
+                _options.path = '/m'+_umi;
+            }
         }
     });
 });

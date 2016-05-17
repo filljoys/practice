@@ -9,10 +9,6 @@ NEJ.define([
     _p._$$ModuleSetting = _k._$klass();
     _pro = _p._$$ModuleSetting._$extend(_m._$$ModuleAbstract);
 
-    _pro.__doParseParent = function(_options) {
-        return _e._$get('root');
-    }
-
     _pro.__doBuild = function() {
         this.__body = _e._$html2node(
             _t._$getTextTemplate('setting-tpl-1')

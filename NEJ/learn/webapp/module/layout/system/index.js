@@ -17,6 +17,12 @@ NEJ.define([
         this.__body = _e._$html2node(
             _t._$getTextTemplate('sys-tpl-1')
         );
+
+        var _list = _e._$getByClassName(this.__body, 'j-flag');
+        this.__export = {
+            tab: _list[0],
+            parent: _list[1]
+        }
     }
 
     _m._$regist('system', _p._$$ModuleSystem);
