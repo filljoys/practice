@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动画效果</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .wrap {
+            position: relative;
+            height: 500px;
+            background: #333;
+            overflow: hidden;
+        }
+        canvas {
+            display: block;
+            background: #2850af;
+            margin: 0 auto;
+        }
+        .circle {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 0, 0, .6);
+            left: 50%;
+            top: 50%;
+            margin-left: -300px;
+            margin-top: -300px;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="circle"></div>
+    <canvas id="canvas" width="1600" height="500">您的浏览器不支持Canvas</canvas>
+</div>
+<script>
+    window.requestNextAnimationFrame = (function () {
+        return window.requestAnimationFrame ||
+                window.webkitRequestAnimationFrame ||
+                window.mozRequestAnimationFrame ||
+                window.msRequestAnimationFrame ||
+                function (callback, element) {
+                    var self = this,
+                            start,
+                            finish;
+                    window.setTimeout(function() {
+                        start = +new Date();
+                        callback(start);
+                        finish = +new Date();
+                        self.timeout = 1000 / 60 - (finish - start);
+                    }, self.timeout);
+                };
+    })();
+    // 先初始化N个粒子，其中随机出现大小，粒子种类，重力加速度
+
+    // 常量定义
+    var __NUMBER = 100;
+    var __POINT_TYPE = [0, 1];
+    var __POINT_SIZE = [2, 8];
+    var __POINT_AVY = [0, 1];
+    var __CIRCLE_R = 300;
+    var __AY = 0.00001;
+
+    var _points = [];
+
+    var _canvas = document.getElementById('canvas');
+    var _context = _canvas.getContext('2d');
+
+    // 几个常用的变量
+    var _cw = _canvas.width;
+    var _ch = _canvas.height;
+    var _halfw = _cw / 2;
+    var _halfh = _ch / 2;
+    var _endwidth = _halfw - 2 * __CIRCLE_R / 3;
+    var _endheight = _halfh - 2 * __CIRCLE_R / 3;
+
+    var _index = 0;
+
+    setTimeout(function() {
+        _index++;
+    }, 100)
+
+    var __initPoints = function() {
+        var _point;
+        for(var i = 0; i < __NUMBER; i++) {
+            _point = [
+                0, // x
+                _halfh, // y
+                Math.random()*(1 - 0.5) + 0.5,
+                Math.random() * (0.2 - 0), // vy
+                __getRangeRandom.apply(null, __POINT_TYPE), // type
+                __getRangeRandom.apply(null, __POINT_SIZE), // size
+                false
+            ]
+            _points.push(_point);
+        }
+    }
+
+    var __getRangeRandom = function(m, n) {
+        return Math.ceil(Math.random() * (n - m) + m);
+    }
+
+    __initPoints();
+
+
+    var __drawPoint = function(point) {
+        if(!_points[6]) {
+            return;
+        }
+        var type = point[4];
+        var size = point[5];
+
+        point[0] += point[2];
+        point[3] += __AY;
+        point[1] += point[3];
+
+        //vy = vy + ay;
+
+        ///y = y + vy;
+
+        _context.save();
+        _context.beginPath();
+        _context.arc(point[0], point[1], size, 0, Math.PI * 2, false);
+        _context.fill();
+        _context.restore();
+    }
+
+    var __render = function() {
+        _context.clearRect(0, 0, _cw, _ch);
+        for (var i = 0; i < _points.length; i++) {
+            if (_index == i) {
+                _points[i][6] == true;
+            }
+            __drawPoint(_points[i]);
+        }
+        requestNextAnimationFrame(__render);
+    }
+
+    __render();
+</script>
+</body>
+</html>
