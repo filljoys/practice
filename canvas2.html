@@ -20,21 +20,21 @@
         }
         .circle {
             position: absolute;
-            width: 400px;
-            height: 400px;
+            width: 800px;
+            height: 800px;
             border-radius: 50%;
             border: 1px solid rgba(0, 0, 0, .6);
             left: 50%;
             top: 50%;
-            margin-left: -200px;
-            margin-top: -200px;
+            margin-left: -400px;
+            margin-top: -400px;
         }
     </style>
 </head>
 <body>
 <div class="wrap">
     <div class="circle"></div>
-    <canvas id="canvas" width="1200" height="500">您的浏览器不支持Canvas</canvas>
+    <canvas id="canvas" width="1600" height="500">您的浏览器不支持Canvas</canvas>
 </div>
 <script>
     window.requestNextAnimationFrame = (function () {
@@ -69,20 +69,35 @@
     // 尺寸 => [6-8]
     // 类型 => 1 || 0 (1:垃圾，0:内容)
 
+    // 垃圾消失过程
+    // 垂直方向速度为0
+    // 水平方向速度置反
+    // 添加透明度维度
+
+
     // 绘图上下文
     var _canvas = document.getElementById('canvas');
     var _context = _canvas.getContext('2d');
 
     // 常量定义
-    var __NUMBER = 200; // 粒子数量
-    var __ACCE_Y = 0.0001; // Y方向加速度
-    var __RADIUS = 200; // 中间圆半径
+    var __NUMBER = 100; // 粒子数量
+    var __ACCE_Y = 0.00006; // Y方向加速度
+    var __RADIUS = 400; // 中间圆半径
+    var __CIRCLR_CENTER = [_canvas.width/2, _canvas.height/2]; // 中间圆的圆心坐标
     var __VX = 0.6; // 水平速度
+    var __TIMER = 200; // 喷射频率
+
+    // 随机数组
+    var __RANDOM_SIZE = [6, 8];
+    // 此处是粒子类型的随机量，
+    // 其中 [0-__RANDOM_TYPE_PER] 表示正常粒子
+    //     [__RANDOM_TYPE_PER, 9] 表示垃圾粒子
+    var __RANDOM_TYPE = [0, 9];
+    // 正常粒子在所有粒子中的占比（随机，不完全准确）
+    var __RANDOM_TYPE_PER = 7;
 
     // 喷射器计数器
     var _counter = 0;
-
-    // 关键点坐标
 
     // 获取某个范围内的随机整数
     var __getRangeRandom = function(m, n) {
@@ -104,13 +119,14 @@
             _sign = __getRandomBool();
             _vy = Math.random() * 0.2;
             _point = {
-                x: _sign ? 0 : _canvas.width,
+                x: _sign ? -20 : _canvas.width + 20,
                 y: _canvas.height / 2,
                 vx: _sign ? __VX : - __VX,
                 vy: __getRandomBool() ? _vy : - _vy,
-                size: __getRangeRandom(6, 8),
-                type: __getRandomBool(),
-                bool: false
+                size: __getRangeRandom.apply(null, __RANDOM_SIZE),
+                type: __getRangeRandom.apply(null, __RANDOM_TYPE),
+                bool: false,
+                alpha: 1
             };
             _.push(_point);
         }
@@ -123,10 +139,13 @@
         if (_counter >= __NUMBER) {
             clearInterval(_timer);
         }
-    }, 200);
+    }, __TIMER);
 
     // 更新粒子位置
     var __updatePoint = function(p) {
+
+        // 粒子类型
+        var _normal = p['type'] < __RANDOM_TYPE_PER;
 
         // 判断粒子是否启动
         if(!p['bool']) {
@@ -134,26 +153,34 @@
         }
 
         // 位置更新
-        if(!p['back']) {
+        if(!p['back']) { // 未接触圆之前
             p['vy'] += p['vy'] > 0 ? __ACCE_Y : -__ACCE_Y;
-            p['x'] += p['vx'];
             p['y'] += p['vy'];
-        } else {
-            p['vx'] *= 0.90;
             p['x'] += p['vx'];
-            //console.log(p['vx'])
+        } else { // 接触圆之后
+            p['alpha'] -= _normal ? 0.002 : 0.04;
+            p['vx'] *= _normal ? 1.001 : 0.9;
+            p['x'] += p['vx'];
         }
 
-        // 重置设置
-        if(p['back'] && p['vx'] <= 1e-2) {
+        // 粒子消失后重置设置
+        if(p['back'] && p['alpha'] <= 0) {
+            __resetPoint(p);
+        }
+
+        // 是否超出边界
+        if (p['y'] < 0 || p['y'] > _canvas.height) {
             __resetPoint(p);
         }
 
         // 边界判断
         if(__isInCircle(p)) {
+            if (!_normal) {
+                p['back'] = true;
+                p['vy'] = 0;
+                p['vx'] = -p['vx'];
+            }
             p['back'] = true;
-            p['vy'] = 0;
-            p['vx'] = -p['vx'];
         }
     }
 
@@ -161,23 +188,69 @@
     var __resetPoint = function(p) {
         var _sign = __getRandomBool();
         var _vy = Math.random() * 0.2;
-        p['x'] = _sign ? 0 : _canvas.width;
+        p['x'] = _sign ? -20 : _canvas.width + 20;
         p['y'] = _canvas.height / 2;
         p['vx'] = _sign ? __VX : - __VX;
         p['vy'] = __getRandomBool() ? _vy : - _vy;
-        p['size'] = __getRangeRandom(6, 8);
-        p['type'] =  __getRandomBool();
+        p['size'] = __getRangeRandom.apply(null, __RANDOM_SIZE);
+        p['type'] = __getRangeRandom.apply(null, __RANDOM_TYPE);
+        p['alpha'] = 1;
         p['back'] = false;
+    }
+
+    // 获取粒子颜色
+    var __getPointColor = function(p) {
+        var _rgb = p['type'] < __RANDOM_TYPE_PER ? '41, 135, 230' : '3, 37, 110';
+        return 'rgba('+ _rgb +', '+p['alpha']+')';
     }
 
     // 绘制单个粒子
     var __drawPoint = function(p) {
-        __updatePoint(p)
-        // 类型先忽略
+        __updatePoint(p);
+
+        // 类型判断
+        var _normal = p['type'] < __RANDOM_TYPE_PER;
+
+        _normal ? __drawNormalPoint(p) : __drawRubbishPoint(p);
+    }
+
+    // 绘制正常粒子
+    var __drawNormalPoint = function(p) {
+        var _rgba = __getPointColor(p);
         _context.save();
+        _context.strokeStyle = _rgba;
+        _context.fillStyle = _rgba;
         _context.beginPath();
         _context.arc(p['x'], p['y'], p['size'], 0, Math.PI * 2, false);
         _context.fill();
+        _context.closePath();
+        _context.restore();
+    }
+
+    // 绘制垃圾粒子
+    var __drawRubbishPoint = function(p) {
+        var __NUMBER = 8;
+        var _rgba = __getPointColor(p);
+        var _positions = __getPolygonPoints(p['x'], p['y'], p['size'], __NUMBER);
+        _context.save();
+        _context.fillStyle = _rgba;
+        _context.beginPath();
+        _context.arc(p['x'], p['y'], p['size'], 0, Math.PI * 2, false);
+        _context.closePath();
+        _context.fill();
+
+        _context.restore();
+        _context.save();
+        _context.strokeStyle = _rgba;
+        _context.lineCap = 'round';
+        _context.lineWidth = 4;
+        for (var i = 0; i < _positions.length/2; i++) {
+            _context.beginPath();
+            _context.moveTo(_positions[i][0], _positions[i][1]);
+            _context.lineTo(_positions[__NUMBER/2+i][0], _positions[__NUMBER/2+i][1]);
+            _context.stroke();
+            _context.closePath();
+        }
         _context.restore();
     }
 
@@ -197,10 +270,8 @@
     var __isInCircle = function(p) {
         var x = p['x'];
         var y = p['y'];
-        var cx = canvas.width/2;
-        var cy = canvas.height/2;
 
-        return Math.sqrt(Math.pow(cx-x, 2) + Math.pow(cy-y, 2)) <= (__RADIUS + p['size']);
+        return Math.sqrt(Math.pow(__CIRCLR_CENTER[0] - x, 2) + Math.pow(__CIRCLR_CENTER[1] - y, 2)) <= (__RADIUS + p['size']);
     }
 
     // 动画循环
@@ -213,6 +284,27 @@
     // 启动动画
     var _$init = function() {
         __render();
+    }
+
+    // 等分圆获取点
+    var __getPolygonPoints = function(x0, y0, r, n, angle) {
+        var _points = [], _point, _angle = angle || 0;
+
+        // 修正r值，需要向外延伸2px
+        r = r + 2;
+
+        // 等分份数
+        n = n || 8;
+
+        // 将角度转成弧度
+        _angle = (_angle / 180) * Math.PI;
+
+        for (var i = 0; i < n; i++) {
+            _point = [x0 + r * Math.sin(_angle), y0 - r * Math.cos(_angle)];
+            _points.push(_point);
+            _angle += 2 * Math.PI / n;
+        }
+        return _points;
     }
 
     _$init();
