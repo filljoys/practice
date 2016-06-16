@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动画效果</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .wrap {
+            position: relative;
+            height: 500px;
+            background: #333;
+        }
+        canvas {
+            display: block;
+            background: #2850af;
+            margin: 0 auto;
+        }
+        .circle {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 0, 0, .6);
+            left: 50%;
+            top: 50%;
+            margin-left: -200px;
+            margin-top: -200px;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="circle"></div>
+    <canvas id="canvas" width="1200" height="500">您的浏览器不支持Canvas</canvas>
+</div>
+<script>
+    window.requestNextAnimationFrame = (function () {
+        return window.requestAnimationFrame ||
+                window.webkitRequestAnimationFrame ||
+                window.mozRequestAnimationFrame ||
+                window.msRequestAnimationFrame ||
+                function (callback, element) {
+                    var self = this,
+                            start,
+                            finish;
+                    window.setTimeout(function() {
+                        start = +new Date();
+                        callback(start);
+                        finish = +new Date();
+                        self.timeout = 1000 / 60 - (finish - start);
+                    }, self.timeout);
+                };
+    })();
+
+    // 坐标系
+    // 以左上角为(0, 0), 右下角为(canvas.width, canvas.height)
+
+    // 关键点坐标
+    // 圆心 (canvas.width/2, canvas.height/2)
+    // 粒子坐标(x, y)
+
+    // 初始化粒子的随机变量
+    // x => (0, canvas.height/2) || (canvas.width, canvas.height/2)
+    // vx => vx || -vx
+    // vy => vy || -vy
+    // 尺寸 => [6-8]
+    // 类型 => 1 || 0 (1:垃圾，0:内容)
+
+    // 绘图上下文
+    var _canvas = document.getElementById('canvas');
+    var _context = _canvas.getContext('2d');
+
+    // 常量定义
+    var __NUMBER = 200; // 粒子数量
+    var __ACCE_Y = 0.0001; // Y方向加速度
+    var __RADIUS = 200; // 中间圆半径
+    var __VX = 0.6; // 水平速度
+
+    // 喷射器计数器
+    var _counter = 0;
+
+    // 关键点坐标
+
+    // 获取某个范围内的随机整数
+    var __getRangeRandom = function(m, n) {
+        return Math.ceil(Math.random() * (n - m) + m);
+    }
+
+    // 获取一个随机开关值
+    var __getRandomBool = function() {
+        return Math.round(Math.random());
+    }
+
+    // 初始化粒子
+    var _points = (function() {
+        var _ = [];
+        var _point;
+        var _sign;
+        var _vy;
+        for (var i = 0; i < __NUMBER; i++) {
+            _sign = __getRandomBool();
+            _vy = Math.random() * 0.2;
+            _point = {
+                x: _sign ? 0 : _canvas.width,
+                y: _canvas.height / 2,
+                vx: _sign ? __VX : - __VX,
+                vy: __getRandomBool() ? _vy : - _vy,
+                size: __getRangeRandom(6, 8),
+                type: __getRandomBool(),
+                bool: false
+            };
+            _.push(_point);
+        }
+        return _;
+    })();
+
+    // 粒子喷射器
+    var _timer = setInterval(function() {
+        _counter++;
+        if (_counter >= __NUMBER) {
+            clearInterval(_timer);
+        }
+    }, 200);
+
+    // 更新粒子位置
+    var __updatePoint = function(p) {
+
+        // 判断粒子是否启动
+        if(!p['bool']) {
+            return;
+        }
+
+        // 位置更新
+        if(!p['back']) {
+            p['vy'] += p['vy'] > 0 ? __ACCE_Y : -__ACCE_Y;
+            p['x'] += p['vx'];
+            p['y'] += p['vy'];
+        } else {
+            p['vx'] *= 0.90;
+            p['x'] += p['vx'];
+            //console.log(p['vx'])
+        }
+
+        // 重置设置
+        if(p['back'] && p['vx'] <= 1e-2) {
+            __resetPoint(p);
+        }
+
+        // 边界判断
+        if(__isInCircle(p)) {
+            p['back'] = true;
+            p['vy'] = 0;
+            p['vx'] = -p['vx'];
+        }
+    }
+
+    // 重置粒子位置
+    var __resetPoint = function(p) {
+        var _sign = __getRandomBool();
+        var _vy = Math.random() * 0.2;
+        p['x'] = _sign ? 0 : _canvas.width;
+        p['y'] = _canvas.height / 2;
+        p['vx'] = _sign ? __VX : - __VX;
+        p['vy'] = __getRandomBool() ? _vy : - _vy;
+        p['size'] = __getRangeRandom(6, 8);
+        p['type'] =  __getRandomBool();
+        p['back'] = false;
+    }
+
+    // 绘制单个粒子
+    var __drawPoint = function(p) {
+        __updatePoint(p)
+        // 类型先忽略
+        _context.save();
+        _context.beginPath();
+        _context.arc(p['x'], p['y'], p['size'], 0, Math.PI * 2, false);
+        _context.fill();
+        _context.restore();
+    }
+
+    // 绘制所有粒子
+    var __drawPoints = function() {
+        // 清空画布
+        _context.clearRect(0, 0, _canvas.width, _canvas.height);
+        for (var i = 0; i < __NUMBER; i++) {
+            if (_counter === i) {
+                _points[i]['bool'] = true;
+            }
+            __drawPoint(_points[i]);
+        }
+    }
+
+    // 判断粒子是否在圆内
+    var __isInCircle = function(p) {
+        var x = p['x'];
+        var y = p['y'];
+        var cx = canvas.width/2;
+        var cy = canvas.height/2;
+
+        return Math.sqrt(Math.pow(cx-x, 2) + Math.pow(cy-y, 2)) <= (__RADIUS + p['size']);
+    }
+
+    // 动画循环
+    var __render = function() {
+        __drawPoints();
+        //setInterval(__render, 1000);
+        requestNextAnimationFrame(__render);
+    }
+
+    // 启动动画
+    var _$init = function() {
+        __render();
+    }
+
+    _$init();
+
+</script>
+</body>
+</html>
