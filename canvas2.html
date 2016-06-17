@@ -23,7 +23,7 @@
             width: 800px;
             height: 800px;
             border-radius: 50%;
-            border: 1px solid rgba(0, 0, 0, .6);
+            border: 1px solid rgba(255, 255, 255, .4);
             left: 50%;
             top: 50%;
             margin-left: -400px;
@@ -34,7 +34,7 @@
 <body>
 <div class="wrap">
     <div class="circle"></div>
-    <canvas id="canvas" width="1600" height="500">您的浏览器不支持Canvas</canvas>
+    <canvas id="canvas" width="1300" height="500">您的浏览器不支持Canvas</canvas>
 </div>
 <script>
     window.requestNextAnimationFrame = (function () {
@@ -74,6 +74,32 @@
     // 水平方向速度置反
     // 添加透明度维度
 
+    // 初始化粒子的位置（固定数量 < 总数量）
+    // 在规定范围内，水平速度设置为固定，垂直速度无
+    // 已知点：
+    // h0 = canvas.height/2 - offset
+    // h1 = canvas.width/2 - (r^2-h0^2);
+    // a0(0, h0)
+    // a1(canvas.width, h0)
+    // a2(h1, 0)
+    // a3(h1, canvas.height)
+    // a4(canvas.width-h1, 0)
+    // a5(canvas.width-h1, canvas.height)
+
+    // 解直线方程
+    // h0 = 0*a + b && 0 = h1*a + b => y = -h0/h1*x + h0
+    // h0 = 0*a + b && canvas.height = h1*a + b => y = (canvas.height - h0)/h1*x + h0
+    // h0 = canvas.width*a + b && 0 = (canvas.width - h1)*a + b => y = h0/h1*x + h0 - canvas.width*h0/h1
+    // h0 = canvas.width*a + b && canvas.height = (canvas.width - h1)*a + b => y = h0/(h1*canvas.height) + h0 - canvas.width*h0/(canvas.height*h1)
+    // 前两条方程是左边区域，后两条方程是右边区域
+    // 需要结合是否在圆内判断
+
+    // 如何生成
+    // 循环生成N个粒子，只要满足条件即可，同时将这些粒子的 init状态设为true
+    // 非初始粒子设为false，依旧使用喷射器
+    // init粒子的垂直速度为0
+    // 分为左右两次
+    // 左边x取值范围在(0, h1), 右边取值范围在(canvas.width-h1, canvas.width)
 
     // 绘图上下文
     var _canvas = document.getElementById('canvas');
