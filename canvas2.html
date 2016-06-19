@@ -34,7 +34,7 @@
 <body>
 <div class="wrap">
     <div class="circle"></div>
-    <canvas id="canvas" width="1300" height="500">您的浏览器不支持Canvas</canvas>
+    <canvas id="canvas" width="1600" height="500">您的浏览器不支持Canvas</canvas>
 </div>
 <script>
     window.requestNextAnimationFrame = (function () {
@@ -107,11 +107,12 @@
 
     // 常量定义
     var __NUMBER = 100; // 粒子数量
-    var __ACCE_Y = 0.00006; // Y方向加速度
+    var __INIT_NUMBER = 80; // 初始化粒子数目
+    var __ACCE_Y = 0.0001; // Y方向加速度
     var __RADIUS = 400; // 中间圆半径
     var __CIRCLR_CENTER = [_canvas.width/2, _canvas.height/2]; // 中间圆的圆心坐标
     var __VX = 0.6; // 水平速度
-    var __TIMER = 200; // 喷射频率
+    var __TIMER = 100; // 喷射频率
     var __OFFDET_H = 0; // 中心点偏移位置
 
     // 初始位置需要的一些变量
@@ -123,6 +124,10 @@
     var h3 = w/2 - Math.sqrt(__RADIUS * __RADIUS - h2 * h2);
     var h4 = w - h1;
     var h5 = w - h3;
+    var h6 = w/2 - __RADIUS;
+    var h7 = w - __RADIUS;
+    var h8 = 40; // 初始位子的X坐标偏移
+    var h9 = 80; // 初始位子的X坐标偏移
 
     // 随机数组
     var __RANDOM_SIZE = [6, 8];
@@ -134,7 +139,7 @@
     var __RANDOM_TYPE_PER = 7;
 
     // 喷射器计数器
-    var _counter = 0;
+    var _counter = __INIT_NUMBER;
 
     // 获取某个范围内的随机整数
     var __getRangeRandom = function(m, n) {
@@ -146,25 +151,35 @@
         return Math.round(Math.random());
     }
 
+    // 判断粒子是否在圆内
+    var __isInCircle = function(p) {
+        var x = p['x'];
+        var y = p['y'];
+
+        return Math.sqrt(Math.pow(__CIRCLR_CENTER[0] - x, 2) + Math.pow(__CIRCLR_CENTER[1] - y, 2)) <= (__RADIUS + p['size']);
+    }
+
+
     // 初始化粒子
     var _points = (function() {
+        var _inits = __initPositions(__INIT_NUMBER);
         var _ = [];
-        var _point;
-        var _sign;
-        var _vy;
+        var _point, _sign, _vy, _init;
         for (var i = 0; i < __NUMBER; i++) {
             _sign = __getRandomBool();
             _vy = Math.random() * 0.2;
+            _init = _inits[i];
             _point = {
-                x: _sign ? -20 : _canvas.width + 20,
-                y: _canvas.height / 2,
-                vx: _sign ? __VX : - __VX,
-                vy: __getRandomBool() ? _vy : - _vy,
-                size: __getRangeRandom.apply(null, __RANDOM_SIZE),
-                type: __getRangeRandom.apply(null, __RANDOM_TYPE),
-                bool: false,
-                alpha: 1
+                x: _init ? _init['x'] : (_sign ? 0 : _canvas.width),
+                y: _init ? _init['y'] : h0,
+                vx: _init ? (_init['x'] < w/2 ? __VX : -__VX) : (_sign ? __VX : -__VX),
+                vy: _init ? 0 : (__getRandomBool() ? _vy : - _vy),
+                size: _init ? _init['size'] : __getRangeRandom.apply(null, __RANDOM_SIZE),
+                type: _init ? _init['type'] : __getRangeRandom.apply(null, __RANDOM_TYPE),
+                bool: !!_init,
+                alpha: (_init && _init['alpha']) ? _init['alpha'] : 1
             };
+            _point['init'] = !!_init;
             _.push(_point);
         }
         return _;
@@ -195,7 +210,7 @@
             p['y'] += p['vy'];
             p['x'] += p['vx'];
         } else { // 接触圆之后
-            p['alpha'] -= _normal ? 0.002 : 0.04;
+            p['alpha'] -= _normal ? 0.003 : 0.04;
             p['vx'] *= _normal ? 1.001 : 0.9;
             p['x'] += p['vx'];
         }
@@ -225,7 +240,7 @@
     var __resetPoint = function(p) {
         var _sign = __getRandomBool();
         var _vy = Math.random() * 0.2;
-        p['x'] = _sign ? -20 : _canvas.width + 20;
+        p['x'] = _sign ? 0 : _canvas.width;
         p['y'] = _canvas.height / 2;
         p['vx'] = _sign ? __VX : - __VX;
         p['vy'] = __getRandomBool() ? _vy : - _vy;
@@ -266,9 +281,9 @@
 
     // 绘制垃圾粒子
     var __drawRubbishPoint = function(p) {
-        var __NUMBER = 8;
+        var __PARTS = 8;
         var _rgba = __getPointColor(p);
-        var _positions = __getPolygonPoints(p['x'], p['y'], p['size'], __NUMBER);
+        var _positions = __getPolygonPoints(p['x'], p['y'], p['size'], __PARTS);
         _context.save();
         _context.fillStyle = _rgba;
         _context.beginPath();
@@ -284,7 +299,7 @@
         for (var i = 0; i < _positions.length/2; i++) {
             _context.beginPath();
             _context.moveTo(_positions[i][0], _positions[i][1]);
-            _context.lineTo(_positions[__NUMBER/2+i][0], _positions[__NUMBER/2+i][1]);
+            _context.lineTo(_positions[__PARTS/2+i][0], _positions[__PARTS/2+i][1]);
             _context.stroke();
             _context.closePath();
         }
@@ -301,14 +316,7 @@
             }
             __drawPoint(_points[i]);
         }
-    }
-
-    // 判断粒子是否在圆内
-    var __isInCircle = function(p) {
-        var x = p['x'];
-        var y = p['y'];
-
-        return Math.sqrt(Math.pow(__CIRCLR_CENTER[0] - x, 2) + Math.pow(__CIRCLR_CENTER[1] - y, 2)) <= (__RADIUS + p['size']);
+        //console.log(_points)
     }
 
     // 动画循环
@@ -320,7 +328,7 @@
 
     // 启动动画
     var _$init = function() {
-        //__render();
+        __render();
     }
 
     // 等分圆获取点
@@ -346,80 +354,6 @@
 
     _$init();
 
-
-
-    // 初始化生成随机位置
-    var __initPositions = function(n) {
-        // 一些变量
-        var i = 0, _axis = [];
-        var _x, _y, _type;
-
-        // 四个直线方程
-        var _y1, _y2, _y3, _y4;
-
-        // 循环产生N个符合要求随机点
-        while (i < n/4) {
-            _x = __getRangeRandom(0, h1);
-            _y = __getRangeRandom(0, h0);
-            // 四个方程
-            _y1 = -h0*_x/h1 + h0;
-            _y2 = (h-h0)*_x/h3 + h;
-            _y3 = h0*_x/(w-h4)+h0*h4/(h4-w);
-            _y4 = (h-h0)*_x/(h5-w)+h0-(h-h0)*w/(h5-w);
-            _type = __getRangeRandom.apply(null, __RANDOM_TYPE);
-            if (_y > _y1 && _y <= h0) {
-                _p.x = _x;
-                _p.y = _y;
-                _p.type = _type;
-                if (__isInCircle2(_x, _y)) {
-                    _p.type = __getRangeRandom(__RANDOM_TYPE_PER, __RANDOM_TYPE[1]);
-                }
-                _axis.push(_p);
-                i++;
-            }
-        }
-        return _axis;
-//        while (i < n) {
-//            var x = __getRangeRandom(h4*0.9, w);
-//            var y = __getRangeRandom(0, h);
-//            var type = __getRandomBool();
-//            if (y > y1 && y < y2) {
-//                pos = {
-//                    x: x,
-//                    y: y
-//                }
-//                pos.type = type;
-//                if (__isInCircle2(pos)) {
-//                    pos.type = 1;
-//                }
-//                positions.push(pos);
-//                i++;
-//            }
-//        }
-//        return positions;
-    }
-
-
-    // 判断粒子是否在圆内
-    var __isInCircle2 = function(x, y) {
-        return Math.sqrt(Math.pow(__CIRCLR_CENTER[0] - x, 2) + Math.pow(__CIRCLR_CENTER[1] - y, 2)) <= (__RADIUS + 8);
-    }
-
-    var __testDraw = function(p) {
-        _context.save();
-        _context.fillStyle = p['type'] < __RANDOM_TYPE_PER ? 'red': 'green';
-        _context.beginPath();
-        _context.arc(p['x'], p['y'], 8, 0, Math.PI * 2, false);
-        _context.fill();
-        _context.closePath();
-        _context.restore();
-    }
-
-    var _poses = __initPositions(40);
-    console.log(_poses)
-    for (var i = 0; i < _poses.length; i++) {
-        __testDraw(_poses[i]);
-    }
 
 </script>
 </body>
