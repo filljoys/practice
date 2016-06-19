@@ -112,6 +112,17 @@
     var __CIRCLR_CENTER = [_canvas.width/2, _canvas.height/2]; // 中间圆的圆心坐标
     var __VX = 0.6; // 水平速度
     var __TIMER = 200; // 喷射频率
+    var __OFFDET_H = 0; // 中心点偏移位置
+
+    // 初始位置需要的一些变量
+    var w = _canvas.width;
+    var h = _canvas.height;
+    var h0 = h/2 - __OFFDET_H;
+    var h1 = w/2 - Math.sqrt(__RADIUS * __RADIUS - h0 * h0);
+    var h2 = h - h0;
+    var h3 = w/2 - Math.sqrt(__RADIUS * __RADIUS - h2 * h2);
+    var h4 = w - h1;
+    var h5 = w - h3;
 
     // 随机数组
     var __RANDOM_SIZE = [6, 8];
@@ -309,7 +320,7 @@
 
     // 启动动画
     var _$init = function() {
-        __render();
+        //__render();
     }
 
     // 等分圆获取点
@@ -334,6 +345,81 @@
     }
 
     _$init();
+
+
+
+    // 初始化生成随机位置
+    var __initPositions = function(n) {
+        // 一些变量
+        var i = 0, _axis = [];
+        var _x, _y, _type;
+
+        // 四个直线方程
+        var _y1, _y2, _y3, _y4;
+
+        // 循环产生N个符合要求随机点
+        while (i < n/4) {
+            _x = __getRangeRandom(0, h1);
+            _y = __getRangeRandom(0, h0);
+            // 四个方程
+            _y1 = -h0*_x/h1 + h0;
+            _y2 = (h-h0)*_x/h3 + h;
+            _y3 = h0*_x/(w-h4)+h0*h4/(h4-w);
+            _y4 = (h-h0)*_x/(h5-w)+h0-(h-h0)*w/(h5-w);
+            _type = __getRangeRandom.apply(null, __RANDOM_TYPE);
+            if (_y > _y1 && _y <= h0) {
+                _p.x = _x;
+                _p.y = _y;
+                _p.type = _type;
+                if (__isInCircle2(_x, _y)) {
+                    _p.type = __getRangeRandom(__RANDOM_TYPE_PER, __RANDOM_TYPE[1]);
+                }
+                _axis.push(_p);
+                i++;
+            }
+        }
+        return _axis;
+//        while (i < n) {
+//            var x = __getRangeRandom(h4*0.9, w);
+//            var y = __getRangeRandom(0, h);
+//            var type = __getRandomBool();
+//            if (y > y1 && y < y2) {
+//                pos = {
+//                    x: x,
+//                    y: y
+//                }
+//                pos.type = type;
+//                if (__isInCircle2(pos)) {
+//                    pos.type = 1;
+//                }
+//                positions.push(pos);
+//                i++;
+//            }
+//        }
+//        return positions;
+    }
+
+
+    // 判断粒子是否在圆内
+    var __isInCircle2 = function(x, y) {
+        return Math.sqrt(Math.pow(__CIRCLR_CENTER[0] - x, 2) + Math.pow(__CIRCLR_CENTER[1] - y, 2)) <= (__RADIUS + 8);
+    }
+
+    var __testDraw = function(p) {
+        _context.save();
+        _context.fillStyle = p['type'] < __RANDOM_TYPE_PER ? 'red': 'green';
+        _context.beginPath();
+        _context.arc(p['x'], p['y'], 8, 0, Math.PI * 2, false);
+        _context.fill();
+        _context.closePath();
+        _context.restore();
+    }
+
+    var _poses = __initPositions(40);
+    console.log(_poses)
+    for (var i = 0; i < _poses.length; i++) {
+        __testDraw(_poses[i]);
+    }
 
 </script>
 </body>
