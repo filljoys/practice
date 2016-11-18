@@ -1,6 +1,3 @@
-/**
- * Created by hzgongke on 2016/4/14 0014.
- */
 var HTMLWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 
