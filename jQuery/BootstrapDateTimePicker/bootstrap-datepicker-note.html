@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://eternicode.github.io/bootstrap-datepicker/bootstrap-datepicker/css/datepicker3.css">
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="bootstrap-datepicker.js"></script>
+</head>
+<body>
+<!-- 	<input class="datepicker" data-date="12/03/2012" data-date-end-date="0d">
+    <input class="datepicker" data-date="12/03/2012" data-date-end-date="0d"> -->
+	<input class="date" data-date="12/03/2012" data-date-end-date="0d">
+
+	<div id="test">
+		<a class="test1">test</a>
+		<a class="test2">test</a>
+		<a class="test3">test</a>
+		<a class="test4">test</a>
+	</div>
+
+	<!--
+	<div data-provide="datepicker-inline"></div>
+	<div data-provide="datepicker-inline"></div>
+	<div data-provide="datepicker-inline"></div>
+	-->
+	<script>
+		$('.date').datepicker({
+		})
+		// $('.datepicker').datepicker({
+		//     autoclose: true
+		// });
+		// $('#test').on({
+		// 	'click': function() {
+		// 		alert(this.className);
+		// 	}
+		// }, '*')
+
+
+	// 生成一个月视图卡片
+	// (function($) {
+	// 	var weekStart = 0;
+	// 	var weekEnd = 6;
+	// 	var isLeapYear = function(year){
+	// 		return (((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0));
+	// 	}
+	// 	var getDaysInMonth = function(year, month){
+	// 		return [31, (isLeapYear(year) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month];
+	// 	}
+	// 	var fill = function() {
+	// 		var today = new Date();
+	// 		var preMonth = new Date(today.getFullYear(), today.getMonth() - 1, 28);
+	// 		var days = getDaysInMonth(preMonth.getFullYear(), preMonth.getMonth());
+	// 		preMonth.setDate(days);
+	// 		preMonth.setDate(days - (preMonth.getDay() - weekStart + 7) % 7);
+	// 		var nextMonth = new Date(preMonth);
+	// 		nextMonth.setFullYear(preMonth.getFullYear());
+	// 		nextMonth.setDate(preMonth.getDate() + 42);
+	// 		nextMonth = nextMonth.valueOf();
+	// 		var html = [];
+	// 		console.log(preMonth.valueOf(), nextMonth);
+	// 		while(preMonth.valueOf() < nextMonth) {
+	// 			if (preMonth.getDay() === weekStart) {
+	// 				html.push('<br>');
+	// 			}
+
+	// 			html.push('|<span data-date="'+ preMonth +'">'+ preMonth.getDate() +'</span>|');
+
+	// 			preMonth.setDate(preMonth.getDate() + 1);
+	// 		}
+
+	// 		$('body').html(html.join(''));
+	// 	}
+	// 	//fill();
+	// })(jQuery)
+	</script>
+</body>
+</html>
+
+                               

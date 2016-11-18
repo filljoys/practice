@@ -1,1 +1,0 @@
-I$(2,function(){console.log("about");alert(NEJ)},1);
