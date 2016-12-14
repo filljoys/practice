@@ -1,0 +1,31 @@
+$triangle = ($h, $v, $dir, $color=#000) {
+  width: 0;
+  height: 0;
+  $width = 0;
+  $height = 0;
+  $i_dir = right;
+  @if $dir == left {
+    $width = $v / 2;
+    $height = $h;
+    $i_dir = right;
+  }
+  @if $dir == right {
+    $width = $v / 2;
+    $height = $h;
+    $i_dir = left;
+  }
+  @if $dir == top {
+    $width = $h / 2;
+    $height = $v;
+    $i_dir = bottom;
+  }
+  @if $dir == bottom {
+    $width = $h / 2;
+    $height = $v;
+    $i_dir = top;
+  }
+  border: $width solid transparent;
+  border-#{$i_dir}-color: $color;
+  border-#{$i_dir}-width: $height;
+  border-#{$dir}-width: 0;
+}
